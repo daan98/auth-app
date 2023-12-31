@@ -4,7 +4,7 @@ import { Observable, of, pipe, map, tap, catchError, throwError } from 'rxjs';
 
 import { AuthStatusEnum, AuthUrlEnum, LocalStorageItemEnum } from '../enum';
 import { environment } from 'src/environments/environments';
-import { CheckAuthResponseInterface, LoginResponseInterface, UserInterface } from '../interfaces/';
+import { CheckAuthResponseInterface, LoginResponseInterface, RegisterResponseInterface, UserInterface } from '../interfaces/';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -66,16 +66,20 @@ export class AuthService {
   }
 
   public logout() {
-    /*
-    *DELETE TOKEN FROM LOCALSTORAGE
-    *DELETE LAST URL VISITED FROM LOCALSTORAGE
-    *SET CURRENT USER INFO AS NULL OR UNDEFINED
-    *SET AUTH STATUS AS NOT AUTHENTICATED
-    *REDIRECT TO LOGIN PAGE
-    */
     localStorage.removeItem(LocalStorageItemEnum.token);
     localStorage.removeItem(LocalStorageItemEnum.url);
     this._currentUser.set(null);
     this._authStatus.set(AuthStatusEnum.notAuthenticated);
+  }
+
+  public register(email : string, name : string, password : string, confirmPassword : string) : Observable<boolean> {
+    const url  = `${this.baseUrl}${AuthUrlEnum.register}`;
+    const body = { email, name, password, confirmPassword };
+
+    return this.http.post<RegisterResponseInterface>(url, body)
+      .pipe(
+        map( ({ user, token }) => this.setAuthentication(user, token) ),
+        catchError( (errorMessage) => throwError(() => errorMessage.error.message) )
+      );
   }
 }

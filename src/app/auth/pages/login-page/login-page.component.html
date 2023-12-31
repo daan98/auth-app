@@ -31,7 +31,9 @@
         <div class="wrap-login100-form-btn">
             <div class="login100-form-bgbtn"></div>
             <button class="login100-form-btn"
-                    type="submit">
+                    type="submit"
+                    [style.cursor]="isEmptyField() ? 'default' : 'pointer'"
+                    [disabled]="isEmptyField()">
                 Login
             </button>
         </div>
@@ -47,3 +49,5 @@
         </a>
     </div>
 </form>
+
+<shared-loading-wheel *ngIf="isLoading()"/>

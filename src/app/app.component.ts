@@ -21,7 +21,6 @@ export class AppComponent {
   });
 
   public authStatusChangedEffect = effect(() => {
-    console.log('authStatus', this.authService.authStatus());
     switch(this.authService.authStatus()) {
       case AuthStatusEnum.checking:
       break;

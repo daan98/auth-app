@@ -1,4 +1,4 @@
-/* .loader-main-container {
+.loader-main-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -22,6 +22,7 @@
     width: 100px;
     border: 10px solid #ccc;
     border-right-color: #3ab764;
+    /* adding border-radius */
     border-radius: 50%;
     animation: loader 1s linear infinite;
 }
@@ -33,4 +34,4 @@
     to {
         transform: rotate(360deg);
     }
-} */
+}
