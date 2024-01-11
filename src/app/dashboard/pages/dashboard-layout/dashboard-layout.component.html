@@ -2,11 +2,11 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #sidenav mode="push" [ngStyle]="{ width: '250px' }">
         <mat-toolbar color="primary">
-            <span>Menu</span>
+            <span class="m-2">Menu</span>
             <span class="spacer"></span>
 
             <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon fontIcon="menu"></mat-icon>
+                <mat-icon fontIcon="close"></mat-icon>
             </button>
         </mat-toolbar>
 
@@ -43,5 +43,3 @@
 </mat-sidenav-container>
 
 <h3>FooterPage</h3>
-
-<router-outlet/>

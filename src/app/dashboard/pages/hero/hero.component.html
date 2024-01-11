@@ -1,1 +1,67 @@
-<p>hero works!</p>
+
+<ng-template #divLoading>
+    <mat-grid-list [cols]="1">
+        <mat-grid-tile>
+            <mat-spinner></mat-spinner>
+        </mat-grid-tile>
+    </mat-grid-list>
+</ng-template>
+
+<div *ngIf="hero; else divLoading" class="grid">
+    <div class="col-12 sm:col-6">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{ hero.alter_ego }}</mat-card-title>
+                <mat-card-subtitle>{{ hero.superhero }}</mat-card-subtitle>
+            </mat-card-header>
+    
+            <img [src]="hero| heroImage" [alt]="hero.superhero" mat-card-image>
+        </mat-card>
+    </div>
+
+    <div class="col-12 sm:col-6">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Information</mat-card-title>
+                <mat-card-subtitle>{{ hero.superhero }}</mat-card-subtitle>
+            </mat-card-header>
+    
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item class="mb-2">
+                        <span class="font-medium text-xl capitalize">first appearance</span>
+                        <br>
+                        {{ hero.first_appearance }}
+                    </mat-list-item>
+
+                    <mat-list-item class="mb-2">
+                        <span class="font-medium text-xl capitalize">characters</span>
+                        <br>
+                        {{ hero.characters }}
+                    </mat-list-item>
+
+                    <mat-list-item class="mb-2">
+                        <span class="font-medium text-xl capitalize">publisher</span>
+                        <br>
+                        {{ hero.publisher }}
+                    </mat-list-item>
+
+                    <mat-list-item class="mb-2">
+                        <span class="font-medium text-xl capitalize">alter ego </span>
+                        <br>
+                        {{ hero.alter_ego }}
+                    </mat-list-item>
+    
+                    <button
+                        mat-raised-button
+                        (click)="goBack()"
+                        color="primary"
+                    >
+                        <mat-icon fontIcon="arrow_back"></mat-icon>
+                        Go back
+                    </button>
+                </mat-list>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

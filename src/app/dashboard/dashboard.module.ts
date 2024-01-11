@@ -11,6 +11,7 @@ import { HeroImagePipe } from './pipes/hero-image.pipe';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { CardComponent } from './components/card/card.component';
 import { SearchPageComponent } from './pages/search-page/search-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { SearchPageComponent } from './pages/search-page/search-page.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }

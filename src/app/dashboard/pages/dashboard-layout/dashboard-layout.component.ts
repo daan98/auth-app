@@ -10,9 +10,9 @@ import { ToolbarItemsInterface } from 'src/app/shared/interfaces';
 export class DashboardLayoutComponent {
 
   public toolbarItems : Array<ToolbarItemsInterface> = [
-    { label: 'See all', icon: 'list', url: '/heroes/list' },
-    { label: 'Search', icon: 'search', url: '/heroes/search' },
-    { label: 'Add', icon: 'add', url: '/heroes/new-hero' },
+    { label: 'See all', icon: 'list', url: '/dashboard/list' },
+    { label: 'Search', icon: 'search', url: '/dashboard/search' },
+    { label: 'Add', icon: 'add', url: '/dashboard/new-hero' },
   ];
 
   public authService = inject( AuthService );
