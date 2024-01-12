@@ -72,11 +72,14 @@ export class NewHeroPageComponent {
     }
 
     if (this.currentHero._id) {
-      this.heroesService.updateHero(this.currentHero).subscribe(
-        (response) => {
+      this.heroesService.updateHero(this.currentHero).subscribe({
+        next: (response) => {
           this.showSnackbar('Hero updated succesfully');
           return this.router.navigateByUrl('/');
-        });
+        }, error: (error) => {
+          this.showSnackbar('There was an error. Please do not repeat heroes.');
+        }
+      });
       return;
     }
 
@@ -88,7 +91,7 @@ export class NewHeroPageComponent {
       },
       error: (error) => {
         // console.log({error});
-        this.showSnackbar(error.error.message);
+        this.showSnackbar('There was an error. Please do not repeat heroes.');
       }
     }
     )
