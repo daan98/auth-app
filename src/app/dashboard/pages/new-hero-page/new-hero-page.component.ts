@@ -58,7 +58,6 @@ export class NewHeroPageComponent {
   get currentHero() : HeroInterface {
     const hero = this.heroForm.value as HeroInterface;
     hero.id = Math.random().toString(36).substring(2, 9);
-    console.log({hero})
     return hero;
   }
 
@@ -72,7 +71,6 @@ export class NewHeroPageComponent {
       return;
     }
 
-    console.log(this.currentHero);
     if (this.currentHero._id) {
       this.heroesService.updateHero(this.currentHero).subscribe(
         (response) => {
@@ -89,7 +87,7 @@ export class NewHeroPageComponent {
         this.showSnackbar('Hero created succesfully');
       },
       error: (error) => {
-        console.log({error})
+        // console.log({error});
         this.showSnackbar(error.error.message);
       }
     }
@@ -102,7 +100,6 @@ export class NewHeroPageComponent {
         switchMap(({ id }) => this.heroesService.getHero(id))
       ).subscribe(
         (response) => {
-          console.log({response})
           if(!response) {
             return this.router.navigateByUrl('/');
           }
@@ -136,7 +133,6 @@ export class NewHeroPageComponent {
         filter((wasDeleted : boolean) => wasDeleted),
         switchMap(() => this.heroesService.deleteHero(this.currentHero._id)),
         map((result) => {
-          console.log('map result: ', result);
           this.router.navigate(['dashboard/list']);
         }),
       )
@@ -145,7 +141,7 @@ export class NewHeroPageComponent {
           this.router.navigate(['dashboard/list']);
         },
         error:(error) => {
-        this.showSnackbar('Error deleting hero.');
+          this.showSnackbar('Error deleting hero.');
         }
       }
     )

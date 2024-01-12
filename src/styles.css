@@ -1,3 +1,14 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 768px) {
+  .buttons-container {
+    flex-direction: column;
+    gap: 25px 0;
+  }
+}
+
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 

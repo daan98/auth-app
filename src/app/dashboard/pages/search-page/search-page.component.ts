@@ -20,10 +20,13 @@ export class SearchPageComponent {
   constructor( private heroService : HeroesService ) {  }
 
   public onSearchhero() : void {
-    this.heroService.getSuggestion(this.heroesControl.value, 6).subscribe(
-      (response : HeroInterface[]) =>  {
+    this.heroService.getSuggestion(this.heroesControl.value, 0).subscribe({
+      next: (response : HeroInterface[]) =>  {
         this.heroes = response;
-      }
+      },
+      error: (error) => {
+        this.heroes = [];
+      }}
     );
   }
 
@@ -33,8 +36,13 @@ export class SearchPageComponent {
       return;
     }
 
+    if(!event.isUserInput) {
+      return;
+    }
+
     const hero : HeroInterface = event.source.value;
     this.heroesControl.setValue(hero.superhero);
     this.filteredOptions = hero;
+    this.heroes = [hero];
   }
 }

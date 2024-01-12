@@ -26,12 +26,11 @@ export class HeroesService {
   }
 
   public getSuggestion(query : string, limit : number) : Observable<HeroInterface[]> {
-      return this.http.get<HeroInterface[]>(`${this.baseUrl}/heroes?q=${query}&_limit=${limit}`);
+      return this.http.get<HeroInterface[]>(`${this.baseUrl}/heroes/suggest?q=${query}&_limit=${limit}`);
   }
 
   public addHero(hero : HeroInterface) : Observable<HeroInterface> {
     const { _id, __v, ...heroInfo } = hero;
-    console.log({heroInfo});
     return this.http.post<HeroInterface>(`${this.baseUrl}/heroes`, heroInfo);
   }
 
@@ -40,8 +39,6 @@ export class HeroesService {
       if (!hero._id) {
           throw Error('hero id is required');
       }
-
-      console.log({hero, heroInfo})
 
       return this.http.patch<HeroInterface>(`${this.baseUrl}/heroes/${_id}`, heroInfo);
   }
